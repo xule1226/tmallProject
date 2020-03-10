@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-1.11.0.js"></script>
+</head>
+<body>
+    用户名：<input type="text" id="username" placeholder="请输入用户名">
+    密码： <input type="password" id="password">
+    <button id="regBtn">注册</button>
+    <script>
+        $(function(){
+            $('#regBtn').click(function(){
+                $.get('http://jx.xuzhixiang.top/ap/api/checkname.php?username=1',{
+                    'username':$('#username').val()
+                }).then(data=>{
+                    if(data.code == 0){
+                        alert('用户名已存在，请从新填写');
+                    }
+                    if(data.code == 1){
+                        $.get('http://jx.xuzhixiang.top/ap/api/reg.php',{
+                            'username':$('#username').val(),
+                            'password':$('#password').val()
+                        }).then(data=>{
+                            if(data.code == 1){
+                                location.href = 'login.html'
+                            }
+                        })
+                    }
+                })
+            })
+            
+        })
+
+
+    </script>
+</body>
+</html>

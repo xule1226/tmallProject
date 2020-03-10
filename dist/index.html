@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <script src="js/jquery-1.11.0.js"></script>
+    <style>
+        html, body {
+            position: relative;
+            height: 100%;
+        }
+        body {
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color:#000;
+            margin: 0;
+            padding: 0;
+        }
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- 最上面 -->
+    <div class="top">
+        <div class="top-box">
+            <div class="fl topfl"><span>喵，欢迎来天猫</span><a href="login.html">请登录</a><a href="reg.html">免费注册</a></div>
+            <div class="fr topfr">
+                <ul>
+                    <li class="fl"><a href="#">我的淘宝</a>
+                        <ul>
+                            <li><a href="#">已买到的宝贝</a></li>
+                            <li><a href="#">已卖出的宝贝</a></li>
+                        </ul>
+                    </li>
+                    <li class="fl"><a href="#">购物车</a></li>
+                    <li class="fl"><a href="#">收藏夹</a>
+                        <ul>
+                            <li><a href="#">收藏的宝贝</a></li>
+                            <li><a href="#">收藏的店铺</a></li>
+                        </ul></li>
+                    <li class="fl">|</li>
+                    <li class="fl"><a href="#">手机版</a></li>
+                    <li class="fl"><a href="#">淘宝网</a></li>
+                    <li class="fl"><a href="#">商家支持</a></li>
+                    <li class="fl"><a href="#">网站导航</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 搜索框 -->
+    <div class="input">
+        <div class="input-box">
+            <div class="img"><img src="img/logo.png"></div>
+            <div class="searchBox">
+                <input type="text" placeholder="搜索&nbsp;天猫&nbsp;商品/品牌/店铺">
+                <button>搜&nbsp;索</button>
+            </div>
+        </div>
+    </div>
+    <!-- nav -->
+    <div class="nav">
+        <div class="navBox">
+            <div class="title">商品分类</div>
+            <a href="#"><img src="img/chaoshi.png" style="width: 103px; height: 33px;"></a>
+            <a href="#"><img src="img/guoji.png" style="width: 103px; height: 33px;"></a>
+            <a href="#">天猫会员</a>
+            <a href="">电器城</a>
+            <a href="">喵鲜生</a>
+            <a href="">医药馆</a>
+            <a href="">营业厅</a>
+            <a href="">魅力惠</a>
+            <a href="">飞猪旅行</a>
+            <a href="">苏宁易购</a>
+        </div>
+    </div>
+    <!-- banner -->
+    <div class="banner">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image:url(./images/nature-1.jpg)"></div>
+                <div class="swiper-slide" style="background-image:url(./images/nature-2.jpg)"></div>
+                <div class="swiper-slide" style="background-image:url(./images/nature-3.jpg)"></div>
+                <div class="swiper-slide" style="background-image:url(./images/nature-4.jpg)"></div>
+                <div class="swiper-slide" style="background-image:url(./images/nature-5.jpg)"></div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination swiper-pagination-white"></div>
+        </div>
+    </div>
+    <script>
+        $(function(){
+            $.get("http://jx.xuzhixiang.top/ap/api/bannerlist.php").then(data=>{
+                console.log(data)
+            })
+        })
+
+
+
+    </script>
+    <script src="js/swiper.min.js"></script>
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            autoloop:{
+                stopOnLastSlide:true
+            } ,
+            spaceBetween: 30,
+            effect: 'fade',
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        })
+    </script>
+    <!-- active -->
+    <div class="active">
+        <div class="activeBox">
+            <div class="left fl">
+                <div>
+                    品牌闪购 BRAND SALE
+                </div>
+                <a href="#"><img src="img/left.png"></a>
+            </div>
+            <div class="mid fl">
+                <div>聚名品 LUXURY CHANNEL</div>
+                <a href="#"><img src="img/mid.png"></a>
+            </div>
+            <div class="right fl">
+                <div>品牌活动 BRAND ACTIVITY</div>
+                <a href="#"><img src="img/right.png"></a>
+            </div>
+        </div>
+
+    </div>
+    <!-- logo -->
+    <div class="logo">
+        <div class="logoBox">
+
+        </div>
+    </div>
+</body>
+</html>
