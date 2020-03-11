@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="js/jquery-1.11.0.js"></script>
+    <script src="libs/swiper.min.js"></script>
+    <script src="libs/jquery-1.11.0.js"></script>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/swiper.min.css">
-    <link rel="stylesheet" href="css/swiper.min.js">
-    <script src="js/index.js"></script>
-    
     <style>
         
         .swiper1,.swiper2 {
@@ -100,10 +98,6 @@
     <div class="banner">
         <div class="swiper-container swiper1">
             <div class="swiper-wrapper sw1">
-                <!-- <div class="swiper-slide" style="background-image:url(./images/nature-1.jpg)"><img src="img/loop1.jpg" alt=""></div>
-                <div class="swiper-slide" style="background-image:url(./images/nature-2.jpg)"><img src="img/loop2.jpg" alt=""></div>
-                <div class="swiper-slide" style="background-image:url(./images/nature-3.jpg)"><img src="img/3.gif" alt=""></div>
-                <div class="swiper-slide" style="background-image:url(./images/nature-4.jpg)"><img src="img/4.gif" alt=""></div> -->
             </div>
             <!-- Add Pagination -->
             <div class="swiper-pagination swiper-pagination-white"></div>
@@ -136,19 +130,21 @@
             
                 
             //查询轮播图接口
-            
-
-            //删除轮播图接口
-
-            // $.get('http://jx.xuzhixiang.top/ap/api/banner-delete.php',{
-            //     'banner_id':17872,
-            // }).then(data=>{
-            //     console.log(data)
-            // })
-            
+            $.get('http://jx.xuzhixiang.top/ap/api/bannerlist.php',{
+                'uid':'32977'
+            }).then(data=>{
+                let str = ''
+                for(let k in data.data){
+                    var a = data.data[k]
+                    console.log(a.banner_img_url)
+                        str +=` <div class="swiper-slide" style="background-image:url(./images/nature-1.jpg)"><img src="${a.banner_img_url}"></div>
+                        `
+                }
+                $('.sw1').html(str)
+            })
         })
     </script>
-    <script src="js/swiper.min.js"></script>
+    <script src="libs/swiper.min.js"></script>
     <!-- Initialize Swiper -->
     <script>
         
@@ -241,7 +237,7 @@
                         <!-- Add Pagination -->
                         <div class="swiper-pagination swiper-pagination-white swiper2-btn" id="swiper-2"></div>
                     </div>
-                    <script src="js/swiper.min.js"></script>
+                    <script src="libs/swiper.min.js"></script>
                     <!-- Initialize Swiper -->
                     <script>
                         var swiper = new Swiper('.swiper2', {

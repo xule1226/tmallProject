@@ -34,7 +34,7 @@ gulp.task("babel", done => {
   done();
 });
 gulp.task("libs", done => {
-  gulp.src("libs/*.js").pipe(gulp.dest("dist/libs"));
+  gulp.src("res/libs/*.js").pipe(gulp.dest("dist/libs"));
   done();
 });
 gulp.task("server", done => {
@@ -49,9 +49,9 @@ gulp.task("watch", done => {
   gulp.watch("*.html", gulp.series("html"));
   gulp.watch("res/sass/*.scss", gulp.series("sass"));
   gulp.watch("res/js/*.js", gulp.series("babel"));
-  gulp.watch("libs/*.js", gulp.series("libs"));
+  gulp.watch("res/libs/*.js", gulp.series("libs"));
   gulp.watch("img/**", gulp.series("img"));
   done();
 });
 
-gulp.task("default", gulp.parallel("server", "watch","sass","img",'babel'));
+gulp.task("default", gulp.parallel("server", "watch","sass","img",'babel','libs'));
