@@ -4,28 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="js/jquery-1.11.0.js"></script>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/swiper.min.css">
-    <script src="js/jquery-1.11.0.js"></script>
+    <link rel="stylesheet" href="css/swiper.min.js">
+    <script src="js/index.js"></script>
+    
     <style>
-        html, body {
-            position: relative;
-            height: 100%;
-        }
-        body {
-            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-            font-size: 14px;
-            color:#000;
-            margin: 0;
-            padding: 0;
-        }
-        .swiper-container {
+        
+        .swiper1,.swiper2 {
             width: 100%;
             height: 100%;
         }
         .swiper-slide {
             background-position: center;
             background-size: cover;
+        }
+        .swiper2-btn{
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+        }
+        .swiper2-btn>span{
+            display: block;
+            height: 57px;
+            border-radius: 0;
+            float: left;
+            display: flex;
+            flex: 1;
+        }
+        #swiper-2 span{
+            margin: 0;
+            text-align: center;
+            font-size: 30px;
+            background-color:green;
         }
     </style>
 </head>
@@ -85,13 +98,12 @@
     </div>
     <!-- banner -->
     <div class="banner">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide" style="background-image:url(./images/nature-1.jpg)"></div>
-                <div class="swiper-slide" style="background-image:url(./images/nature-2.jpg)"></div>
-                <div class="swiper-slide" style="background-image:url(./images/nature-3.jpg)"></div>
-                <div class="swiper-slide" style="background-image:url(./images/nature-4.jpg)"></div>
-                <div class="swiper-slide" style="background-image:url(./images/nature-5.jpg)"></div>
+        <div class="swiper-container swiper1">
+            <div class="swiper-wrapper sw1">
+                <!-- <div class="swiper-slide" style="background-image:url(./images/nature-1.jpg)"><img src="img/loop1.jpg" alt=""></div>
+                <div class="swiper-slide" style="background-image:url(./images/nature-2.jpg)"><img src="img/loop2.jpg" alt=""></div>
+                <div class="swiper-slide" style="background-image:url(./images/nature-3.jpg)"><img src="img/3.gif" alt=""></div>
+                <div class="swiper-slide" style="background-image:url(./images/nature-4.jpg)"><img src="img/4.gif" alt=""></div> -->
             </div>
             <!-- Add Pagination -->
             <div class="swiper-pagination swiper-pagination-white"></div>
@@ -99,21 +111,49 @@
     </div>
     <script>
         $(function(){
-            $.get("http://jx.xuzhixiang.top/ap/api/bannerlist.php").then(data=>{
-                console.log(data)
-            })
+            //登录接口
+            // $.get('http://jx.xuzhixiang.top/ap/api/login.php',{
+            //     'username':'xule',
+            //     'password':'123456',
+            // }).then(data=>{
+            //     console.log(data)
+            // })
+
+            //产品列表接口
+
+            // $.get('http://jx.xuzhixiang.top/ap/api/productlist.php').then(data=>{
+            //     console.log(data)
+            // })
+
+            //添加轮播图接口
+
+            // $.get("http://jx.xuzhixiang.top/ap/api/add-banner.php",{
+            //         'bannerurl' : 'img/loop4.jpg',
+            //         'uid' : '32977',
+            // }).then(data=>{
+            //     console.log(data)
+            // })
+            
+                
+            //查询轮播图接口
+            
+
+            //删除轮播图接口
+
+            // $.get('http://jx.xuzhixiang.top/ap/api/banner-delete.php',{
+            //     'banner_id':17872,
+            // }).then(data=>{
+            //     console.log(data)
+            // })
+            
         })
-
-
-
     </script>
     <script src="js/swiper.min.js"></script>
     <!-- Initialize Swiper -->
     <script>
-        var swiper = new Swiper('.swiper-container', {
-            autoloop:{
-                stopOnLastSlide:true
-            } ,
+        
+        var swiper = new Swiper('.swiper1', {
+            autoplay:true,
             spaceBetween: 30,
             effect: 'fade',
             pagination: {
@@ -125,6 +165,7 @@
                 prevEl: '.swiper-button-prev',
             },
         })
+        
     </script>
     <!-- active -->
     <div class="active">
@@ -149,7 +190,94 @@
     <!-- logo -->
     <div class="logo">
         <div class="logoBox">
+            <ul>
+                <li><img src="img/1.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/2.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/3.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/4.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/5.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/6.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/7.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/8.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/9.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/10.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/11.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/12.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/13.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/14.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/15.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/16.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/17.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/18.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/19.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/20.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/21.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/22.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/30.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/24.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/23.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/25.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/26.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/27.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/28.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+                <li><img src="img/29.gif" alt=""><a href="#"><span>优惠券250</span><span>点击进入</span></a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 天猫超市 -->
+    <div class="tmSuper">
+        <div class="tmSuperBox">
+            <img src="img/tmchaoshi.png" >
+            <div class="left fl">
+                <img src="img/chaoshi1.png" alt="">
+            </div>
+            <ul>
+                <li>
+                    <div class="swiper-container swiper2">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" style="background-image:url(./images/nature-1.jpg)"><img src="img/loop1.jpg" alt=""></div>
+                            <div class="swiper-slide" style="background-image:url(./images/nature-2.jpg)"><img src="img/loop2.jpg" alt=""></div>
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination swiper-pagination-white swiper2-btn" id="swiper-2"></div>
+                    </div>
+                    <script src="js/swiper.min.js"></script>
+                    <!-- Initialize Swiper -->
+                    <script>
+                        var swiper = new Swiper('.swiper2', {
+                            autoplay:true,
+                            spaceBetween: 30,
+                            effect: 'fade',
+                            pagination: {
+                                el: '.swiper-pagination',
+                                clickable: true,
+                            },
+                            navigation: {
+                                nextEl: '.swiper-button-next',
+                                prevEl: '.swiper-button-prev',
+                            },
+                        })
+                        var btns = document.querySelectorAll('#swiper-2>span');
+                        btns[0].innerHTML = "今日疯抢";
+                        btns[1].innerHTML = '量贩装';
+                    </script>
+                </li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <script>
+                $(function(){
+                    $.get('')
+                })
 
+
+
+
+            </script>
         </div>
     </div>
 </body>
