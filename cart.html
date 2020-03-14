@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车</title>
+    <script src="libs/jquery-1.11.0.js"></script>
+    <style>
+        img {
+            width: 50px;
+            height: 50px;
+        }
+
+        span {
+            margin: 0 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="checkbox" name="" id="all">全选
+    <ul>
+        <!-- <li>
+            <input type="checkbox" name="" id="">
+            <img src="" alt="">
+            <span>-</span><input type="text"><span>+</span><span>单价</span><span>总单价</span><button>删除</button>
+        </li> -->
+    </ul>
+    <span class="all">总价</span>
+    <script>
+        $(function () {
+            $.get('http://jx.xuzhixiang.top/ap/api/cart-list.php', {
+                id: 32977,
+            }, {
+            }).then(data => {
+                console.log(data)
+                var str = '';
+                for (let i = 0; i < data.data.length; i++) {
+                    var a = data.data[i];
+                    str += `
+                    <li>
+                        <input type="checkbox" class="ck">
+                        <img src="${a.pimg}" alt=""><span>${a.pname}</span>
+                        <span class="min" data-id="${i}">-</span><input type="text" class="num" value="${a.pnum}" data-id="${a.pid}"><span class="plus" data-id="${i}">+</span><span class="pprice">${a.pprice}</span><span class="perall">${a.pprice * a.pnum}</span><button data-id="${a.pid}">删除</button>
+                    </li>
+                    `
+                    $('ul').html(str);
+                    allPrice();
+                }
+                $('button').click(function(){
+                    $.get('http://jx.xuzhixiang.top/ap/api/cart-delete.php',{
+                        uid:32977,
+                        pid:$(this).attr('data-id')
+                    }).then(data=>{
+                        $(this).parent().remove();
+                        console.log(data)
+                    })
+                })
+                $(".min").click(function () {
+                    let index = $(this).attr('data-id');
+                    console.log(index);
+                    var val = $('.num').eq(index).val() - 1;
+                    if (val < 1) {
+                        val = 1;
+                    }
+                    $('.num').eq(index).val(val);
+                    let price = $('.pprice').eq(index).text();
+                    $('.perall').eq(index).html(val * price);
+                    $.get('http://jx.xuzhixiang.top/ap/api/cart-update-num.php', {
+                        uid: 32977,
+                        pid: $('.num').eq(index).attr('data-id'),
+                        pnum: val,
+                    }).then(data => {
+                        console.log(data);
+
+                    })
+                    allPrice();
+                })
+
+                $(".plus").click(function () {
+                    let index = $(this).parent().index();
+                    let val = parseInt($(".num").eq(index).val()) + 1;
+                    $(".num").eq(index).val(val);
+                    let price = $('.pprice').eq(index).text();
+                    $('.perall').eq(index).html(val * price);
+                    $.get('http://jx.xuzhixiang.top/ap/api/cart-update-num.php', {
+                        uid: 32977,
+                        pid: $('.num').eq(index).attr('data-id'),
+                        pnum: val,
+                    }).then(data => {
+                        console.log(data);
+                    })
+                    allPrice();
+                })
+                $('#all').click(function(){
+                    $("li input[type='checkbox']").prop('checked',$(this).prop('checked'))
+                    allPrice();
+                })
+                $("li input[type='checkbox']").click(function(){
+                    if($("li input[type='checkbox']:checked").length === $("li input[type='checkbox']").length){
+                        $('#all').prop('checked',true)
+                    }else{
+                        $('#all').prop('checked',false)
+                    }
+                    allPrice();
+                })
+            })
+            function allPrice() {
+                
+                let int = 0;
+                $('.perall').each(function(){
+                    if($(this).parent().find('.ck').prop('checked')){
+                        int += parseInt( $(this).html())
+                    }
+                })
+               
+                $('.all').html(int)
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

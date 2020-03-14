@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品详情</title>
+    <script src="libs/jquery-1.11.0.js"></script>
+    <style>
+        div{
+            border: 1px solid #000;
+            margin: auto;
+            text-align: center;
+        }
+        img {
+            width: 185px;
+            height: 185px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+        <!-- <img src="" alt="">
+        <p></p>
+        <p></p>
+        <span>+</span><input type="text"><span>-</span>
+        <button>加入购物车</button> -->
+    <script>
+        $(function () {
+            var id = window.location.search.split('=')[1]
+            $.get('http://jx.xuzhixiang.top/ap/api/detail.php',{
+                id:id,
+            }).then(data=>{
+                let str = '';
+                str +=`
+                    <img src="${data.data.pimg}" alt="">
+                    <p>${data.data.pname}</p>
+                    <p>${data.data.pprice}</p>
+                    <span>-</span><input type="text" value="0"><span>+</span>
+                    <button data-id="${data.data.pid}">加入购物车</button><br>
+                    <a href="cart.html">点击进入购物车</a>
+                `
+                $('div').html(str)
+                var val = $('input').val()
+                $('span').eq(0).click(function(){
+                    val--;
+                    if(val<0){
+                        val=0
+                    }
+                    $('input').val(val)
+                })
+                $('span').eq(1).click(function(){
+                    val++;
+                    $('input').val(val)
+                })
+                $('button').click(function(){
+                    $.get('http://jx.xuzhixiang.top/ap/api/add-product.php',{
+                        uid:32977,
+                        pid:$(this).attr('data-id'),
+                        pnum:$('input').val()
+                    }).then(data=>{
+                        console.log(data)
+                    })
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

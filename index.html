@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>首页</title>
     <script src="libs/swiper.min.js"></script>
     <script src="libs/jquery-1.11.0.js"></script>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/swiper.min.css">
+    <script src="js/index.js"></script>
     <style>
-        
-        .swiper1,.swiper2 {
+        .swiper1,
+        .swiper2 {
             width: 100%;
             height: 100%;
         }
+
         .swiper-slide {
             background-position: center;
             background-size: cover;
         }
-        .swiper2-btn{
+
+        .swiper2-btn {
             position: absolute;
             top: 0;
             left: 0;
             display: flex;
         }
-        .swiper2-btn>span{
+
+        .swiper2-btn>span {
             display: block;
             height: 57px;
             border-radius: 0;
@@ -32,15 +37,33 @@
             display: flex;
             flex: 1;
         }
-        #swiper-2 span{
+
+        #swiper-2 span {
             margin: 0;
             text-align: center;
             font-size: 30px;
-            background-color:green;
+            background-color: green;
         }
     </style>
 </head>
+
 <body>
+    <!-- fixtop -->
+    <div class="fix-top">
+        <div class="fix-tbox">
+            <span class="fl">TMALL 天猫</span>
+            <div class="fl"><input type="text" placeholder="搜索 天猫 商品/品牌/店铺"><button>搜&nbsp;索</button></div>
+        </div>
+    </div>
+    <!-- fixleft -->
+    <div class="fix-left">
+        <ul>
+            <li>导航</li>
+            <li>超市</li>
+            <li>列表</li>
+        </ul>
+        <span style="display: block;">顶部</span>
+    </div>
     <!-- 最上面 -->
     <div class="top">
         <div class="top-box">
@@ -53,12 +76,13 @@
                             <li><a href="#">已卖出的宝贝</a></li>
                         </ul>
                     </li>
-                    <li class="fl"><a href="#">购物车</a></li>
+                    <li class="fl"><a href="cart.html">购物车</a></li>
                     <li class="fl"><a href="#">收藏夹</a>
                         <ul>
                             <li><a href="#">收藏的宝贝</a></li>
                             <li><a href="#">收藏的店铺</a></li>
-                        </ul></li>
+                        </ul>
+                    </li>
                     <li class="fl">|</li>
                     <li class="fl"><a href="#">手机版</a></li>
                     <li class="fl"><a href="#">淘宝网</a></li>
@@ -81,7 +105,25 @@
     <!-- nav -->
     <div class="nav">
         <div class="navBox">
-            <div class="title">商品分类</div>
+            <div class="title">商品分类
+                    <ul>
+                        <li><a href="productlist.html">商品列表1</a> </li>
+                        <li>商品列表2</li>
+                        <li>商品列表3</li>
+                        <li>商品列表4</li>
+                        <li>商品列表5</li>
+                        <li>商品列表6</li>
+                        <li>商品列表7</li>
+                        <li>商品列表8</li>
+                        <li>商品列表9</li>
+                        <li>商品列表10</li>
+                        <li>商品列表11</li>
+                        <li>商品列表12</li>
+                        <li>商品列表13</li>
+                        <li>商品列表14</li>
+                        <li>商品列表15</li>
+                    </ul>
+            </div>
             <a href="#"><img src="img/chaoshi.png" style="width: 103px; height: 33px;"></a>
             <a href="#"><img src="img/guoji.png" style="width: 103px; height: 33px;"></a>
             <a href="#">天猫会员</a>
@@ -96,7 +138,7 @@
     </div>
     <!-- banner -->
     <div class="banner">
-        <div class="swiper-container swiper1">
+        <div class="swiper-container swiper1 fl">
             <div class="swiper-wrapper sw1">
             </div>
             <!-- Add Pagination -->
@@ -104,66 +146,7 @@
         </div>
     </div>
     <script>
-        $(function(){
-            //登录接口
-            // $.get('http://jx.xuzhixiang.top/ap/api/login.php',{
-            //     'username':'xule',
-            //     'password':'123456',
-            // }).then(data=>{
-            //     console.log(data)
-            // })
-
-            //产品列表接口
-
-            // $.get('http://jx.xuzhixiang.top/ap/api/productlist.php').then(data=>{
-            //     console.log(data)
-            // })
-
-            //添加轮播图接口
-
-            // $.get("http://jx.xuzhixiang.top/ap/api/add-banner.php",{
-            //         'bannerurl' : 'img/loop4.jpg',
-            //         'uid' : '32977',
-            // }).then(data=>{
-            //     console.log(data)
-            // })
-            
-                
-            //查询轮播图接口
-            $.get('http://jx.xuzhixiang.top/ap/api/bannerlist.php',{
-                'uid':'32977'
-            }).then(data=>{
-                let str = ''
-                for(let k in data.data){
-                    var a = data.data[k]
-                    console.log(a.banner_img_url)
-                        str +=` <div class="swiper-slide" style="background-image:url(./images/nature-1.jpg)"><img src="${a.banner_img_url}"></div>
-                        `
-                }
-                $('.sw1').html(str)
-            })
-        })
     </script>
-    <script src="libs/swiper.min.js"></script>
-    <!-- Initialize Swiper -->
-    <script>
-        
-        var swiper = new Swiper('.swiper1', {
-            autoplay:true,
-            spaceBetween: 30,
-            effect: 'fade',
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        })
-        
-    </script>
-    <!-- active -->
     <div class="active">
         <div class="activeBox">
             <div class="left fl">
@@ -221,60 +204,97 @@
         </div>
     </div>
     <!-- 天猫超市 -->
-    <div class="tmSuper">
-        <div class="tmSuperBox">
-            <img src="img/tmchaoshi.png" >
-            <div class="left fl">
-                <img src="img/chaoshi1.png" alt="">
-            </div>
-            <ul>
-                <li>
+    <div class="gunlun">
+
+        <div class="tmSuper">
+            <div class="tmSuperBox">
+                <img src="img/tmchaoshi.png">
+                <div class="left fl">
+                    <img src="img/chaoshi1.png" alt="">
+                </div>
+                <div class="loop">
                     <div class="swiper-container swiper2">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide" style="background-image:url(./images/nature-1.jpg)"><img src="img/loop1.jpg" alt=""></div>
-                            <div class="swiper-slide" style="background-image:url(./images/nature-2.jpg)"><img src="img/loop2.jpg" alt=""></div>
+                            <div class="swiper-slide" style="background-image:url(./images/nature-1.jpg)"><img
+                                    src="img/chaoshi8.png"></div>
+                            <div class="swiper-slide" style="background-image:url(./images/nature-2.jpg)"><img
+                                    src="img/chaoshi2.png"></div>
                         </div>
                         <!-- Add Pagination -->
                         <div class="swiper-pagination swiper-pagination-white swiper2-btn" id="swiper-2"></div>
                     </div>
                     <script src="libs/swiper.min.js"></script>
                     <!-- Initialize Swiper -->
-                    <script>
-                        var swiper = new Swiper('.swiper2', {
-                            autoplay:true,
-                            spaceBetween: 30,
-                            effect: 'fade',
-                            pagination: {
-                                el: '.swiper-pagination',
-                                clickable: true,
-                            },
-                            navigation: {
-                                nextEl: '.swiper-button-next',
-                                prevEl: '.swiper-button-prev',
-                            },
-                        })
-                        var btns = document.querySelectorAll('#swiper-2>span');
-                        btns[0].innerHTML = "今日疯抢";
-                        btns[1].innerHTML = '量贩装';
-                    </script>
-                </li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-            <script>
-                $(function(){
-                    $.get('')
-                })
 
+                </div>
+                <ul>
+                    <li><a href="#"></a>
+                        <img src="img/chaoshi3.jpg">
+                        <p>小卷包</p>
+                        <p>￥888</p>
+                        <p>好吃又好玩</p>
+                    </li>
+                    <li><a href="#"></a>
+                        <img src="img/chaoshi4.jpg">
+                        <p>拉面说</p>
+                        <p>￥999</p>
+                        <p>你一个拉面能说什么</p>
+                    </li>
+                    <li><a href="#"></a>
+                        <img src="img/chaoshi5.jpg">
+                        <p>face纸巾</p>
+                        <p>￥111</p>
+                        <p>纸巾沾水还能用堵马桶</p>
+                    </li>
+                    <li><a href="#"></a>
+                        <img src="img/chaoshi6.jpg">
+                        <p>格瓦斯</p>
+                        <p>￥222</p>
+                        <p>这玩意很危险</p>
+                    </li>
+                    <li><a href="#"></a>
+                        <img src="img/chaoshi7.jpg">
+                        <p>王致和臭豆腐</p>
+                        <p>￥333</p>
+                        <p>这比格瓦斯还危险</p>
+                    </li>
+                    <li><a href="#"></a>
+                        <img src="img/chaoshi8.png">
+                        <p>王牌大虾</p>
+                        <p>￥444</p>
+                        <p>这虾是红色的 死了</p>
+                    </li>
+                </ul>
+                <script>
+                    var swiper = new Swiper('.swiper2', {
+                        autoplay: true,
+                        spaceBetween: 30,
+                        effect: 'fade',
+                        pagination: {
+                            el: '.swiper-pagination',
+                            clickable: true,
+                        },
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                    })
+                    var btns = document.querySelectorAll('#swiper-2>span');
+                    btns[0].innerHTML = "今日疯抢";
+                    btns[1].innerHTML = '量贩装';
+                </script>
 
+            </div>
+        </div>
+        <!-- 首页商品列表 -->
+        <div class="list">
+            <div class="listBox">
+                <ul>
 
-
-            </script>
+                </ul>
+            </div>
         </div>
     </div>
 </body>
+
 </html>
