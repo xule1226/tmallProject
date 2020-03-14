@@ -11,7 +11,6 @@
             width: 50px;
             height: 50px;
         }
-
         span {
             margin: 0 20px;
         }
@@ -51,75 +50,69 @@
                 $('button').click(function(){
                     $.get('http://jx.xuzhixiang.top/ap/api/cart-delete.php',{
                         uid:32977,
-                        pid:$(this).attr('data-id')
+                        pid:$(this).attr('data-id'),
                     }).then(data=>{
                         $(this).parent().remove();
-                        console.log(data)
+                        allPrice();
                     })
-                })
-                $(".min").click(function () {
-                    let index = $(this).attr('data-id');
-                    console.log(index);
-                    var val = $('.num').eq(index).val() - 1;
-                    if (val < 1) {
-                        val = 1;
-                    }
-                    $('.num').eq(index).val(val);
-                    let price = $('.pprice').eq(index).text();
-                    $('.perall').eq(index).html(val * price);
-                    $.get('http://jx.xuzhixiang.top/ap/api/cart-update-num.php', {
-                        uid: 32977,
-                        pid: $('.num').eq(index).attr('data-id'),
-                        pnum: val,
-                    }).then(data => {
-                        console.log(data);
-
-                    })
-                    allPrice();
-                })
-
-                $(".plus").click(function () {
-                    let index = $(this).parent().index();
-                    let val = parseInt($(".num").eq(index).val()) + 1;
-                    $(".num").eq(index).val(val);
-                    let price = $('.pprice').eq(index).text();
-                    $('.perall').eq(index).html(val * price);
-                    $.get('http://jx.xuzhixiang.top/ap/api/cart-update-num.php', {
-                        uid: 32977,
-                        pid: $('.num').eq(index).attr('data-id'),
-                        pnum: val,
-                    }).then(data => {
-                        console.log(data);
-                    })
-                    allPrice();
+                    
                 })
                 $('#all').click(function(){
-                    $("li input[type='checkbox']").prop('checked',$(this).prop('checked'))
+                    $('li .ck').prop('checked',$(this).prop('checked'));
                     allPrice();
                 })
-                $("li input[type='checkbox']").click(function(){
-                    if($("li input[type='checkbox']:checked").length === $("li input[type='checkbox']").length){
+                $('li .ck').click(function(){
+                    if($('li .ck').length == $('li .ck:checked').length){
                         $('#all').prop('checked',true)
-                    }else{
-                        $('#all').prop('checked',false)
-                    }
+                    };
                     allPrice();
                 })
-            })
-            function allPrice() {
-                
-                let int = 0;
-                $('.perall').each(function(){
-                    if($(this).parent().find('.ck').prop('checked')){
-                        int += parseInt( $(this).html())
+                $('.min').click(function(){
+                    var index = $(this).attr('data-id');
+                    var val = $('.num').eq(index).val();
+                    val--;
+                    if(val<1){
+                        val = 1
                     }
+                    $('.num').eq(index).val(val);
+                    var perprice = $('.pprice').eq(index).text();
+                    $('.perall').eq(index).html(perprice*val);
+                    $.get('http://jx.xuzhixiang.top/ap/api/cart-update-num.php',{
+                        uid:32977,
+                        pid:$('.num').eq(index).attr('data-id'),
+                        pnum:val,
+                    }).then(data=>{
+                        console.log(data)
+                    })
+                    allPrice();
                 })
-               
-                $('.all').html(int)
-            }
+                $('.plus').click(function(){
+                    var index = $(this).attr('data-id');
+                    var val = $('.num').eq(index).val();
+                    val++;
+                    $('.num').eq(index).val(val);
+                    var perprice = $('.pprice').eq(index).text();
+                    $('.perall').eq(index).html(perprice*val);
+                    $.get('http://jx.xuzhixiang.top/ap/api/cart-update-num.php',{
+                        uid:32977,
+                        pid:$('.num').eq(index).attr('data-id'),
+                        pnum:val,
+                    }).then(data=>{
+                        console.log(data)
+                    })
+                    allPrice();
+                })
+                function allPrice(){
+                    var int = 0;
+                    $('.perall').each(function(){
+                        if($(this).parent().find('.ck').prop('checked')){
+                            int += parseInt($(this).html());
+                        }
+                    })
+                    $('.all').html(int)
+                }
+            })
         })
-
-
     </script>
 </body>
 
